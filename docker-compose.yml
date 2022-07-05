@@ -1,0 +1,22 @@
+version: "3.5"
+
+services:
+  popular-shop:
+    container_name: popular-shop
+    build:
+      context: tomcat
+    ports:
+      - "8888:8080"
+
+  slow-loris-attack:
+    container_name: slow-loris-attack
+    build:
+      context: slow-loris
+    depends_on:
+      - popular-shop
+    environment:
+      - HOST=popular-shop
+      - PORT=8080
+      - NUM_REQUESTS_TO_START=200
+      - TIME_BETWEEN_REQUESTS=0.05
+      - TIME_BETWEEN_BYTES=1
