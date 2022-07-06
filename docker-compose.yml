@@ -1,21 +1,33 @@
 version: "3.5"
 
 services:
-  popular-shop:
-    container_name: popular-shop
+  shop:
+    # Tomcat server
+    container_name: shop
     build:
-      context: tomcat
+      context: shop
     ports:
-      - "8888:8080"
+      - "8888:8080"  # just so we can see it in our browser
 
-  slow-loris-attack:
-    container_name: slow-loris-attack
+  innocent-client:
+    scale: 5
+    build:
+      context: innocent-client
+    depends_on:
+      - shop
+    environment:
+      - HOST=shop
+      - PORT=8080
+
+  slow-loris:
+    # Ptyhon app
+    container_name: slow-loris
     build:
       context: slow-loris
     depends_on:
-      - popular-shop
+      - shop
     environment:
-      - HOST=popular-shop
+      - HOST=shop
       - PORT=8080
       - NUM_REQUESTS_TO_START=200
       - TIME_BETWEEN_REQUESTS=0.05
