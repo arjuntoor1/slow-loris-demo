@@ -17,11 +17,11 @@ HOST = os.environ['HOST'] or 'localhost'
 # tomcat server port
 PORT = int(os.environ['PORT']) or 8888
 
-logging.debug(f'NUM_REQUESTS_TO_START=${NUM_REQUESTS_TO_START}')
-logging.debug(f'TIME_BETWEEN_REQUESTS=${TIME_BETWEEN_REQUESTS}')
-logging.debug(f'TIME_BETWEEN_BYTES=${TIME_BETWEEN_BYTES}')
-logging.debug(f'HOST=${HOST}')
-logging.debug(f'PORT=${PORT}')
+logging.debug(f'NUM_REQUESTS_TO_START={NUM_REQUESTS_TO_START}')
+logging.debug(f'TIME_BETWEEN_REQUESTS={TIME_BETWEEN_REQUESTS}')
+logging.debug(f'TIME_BETWEEN_BYTES={TIME_BETWEEN_BYTES}')
+logging.debug(f'HOST={HOST}')
+logging.debug(f'PORT={PORT}')
 
 
 def slow_request(name: str, http_request: str):
