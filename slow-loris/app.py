@@ -7,15 +7,15 @@ import os
 logging.root.setLevel(logging.DEBUG)
 
 # Number of requests to initiate in total
-NUM_REQUESTS_TO_START = int(os.environ["NUM_REQUESTS_TO_START"]) or 200
+NUM_REQUESTS_TO_START = int(os.environ["NUM_REQUESTS_TO_START"] or 200)
 # Delay (secs) between each concurrent request thread
-TIME_BETWEEN_REQUESTS = float(os.environ["TIME_BETWEEN_REQUESTS"]) or 0.05
+TIME_BETWEEN_REQUESTS = float(os.environ["TIME_BETWEEN_REQUESTS"] or 0.05)
 # Delay (secs) between each byte sent to server
-TIME_BETWEEN_BYTES = float(os.environ["TIME_BETWEEN_BYTES"]) or 1
+TIME_BETWEEN_BYTES = float(os.environ["TIME_BETWEEN_BYTES"] or 1)
 # Hostname of the tomcat server
 HOST = os.environ['HOST'] or 'localhost'
 # tomcat server port
-PORT = int(os.environ['PORT']) or 8888
+PORT = int(os.environ['PORT'] or 8888)
 
 logging.debug(f'NUM_REQUESTS_TO_START={NUM_REQUESTS_TO_START}')
 logging.debug(f'TIME_BETWEEN_REQUESTS={TIME_BETWEEN_REQUESTS}')
