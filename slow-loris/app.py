@@ -11,7 +11,7 @@ NUM_REQUESTS_TO_START = int(os.environ["NUM_REQUESTS_TO_START"] or 200)
 # Delay (secs) between each concurrent request thread
 TIME_BETWEEN_REQUESTS = float(os.environ["TIME_BETWEEN_REQUESTS"] or 0.05)
 # Delay (secs) between each byte sent to server
-TIME_BETWEEN_BYTES = float(os.environ["TIME_BETWEEN_BYTES"] or 1)
+TIME_BETWEEN_BYTES = float(os.environ["TIME_BETWEEN_BYTES"] or 5)
 # Hostname of the tomcat server
 HOST = os.environ['HOST'] or 'localhost'
 # tomcat server port
@@ -45,7 +45,7 @@ def create_simple_get_request(path: str):
 
 
 def send_very_slowly(num: str, http_request: str):
-    logging.debug("Sending request (%s), total request size %d bytes", num, len(http_request))
+    logging.debug("Opening slow connection (%s), total request size %d bytes", num, len(http_request))
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, PORT))
         for char in http_request:
